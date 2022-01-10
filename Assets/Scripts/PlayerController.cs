@@ -1,7 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class PlayerController : MonoBehaviour
     public float speed = 1000f;
     private int score = 0;
     public int health = 5;
+
+    public Text scoreText;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -50,7 +54,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Pickup"))
         {
             score++;
-            Debug.Log($"Score: {score}");
+            SetScoreText();
             Destroy(other.gameObject);
         }
         if (other.CompareTag("Trap"))
@@ -63,4 +67,9 @@ public class PlayerController : MonoBehaviour
             Debug.Log($"You win!");
         }
     }
+    void SetScoreText()
+    {
+        scoreText.text = $"Score: {score}";
+    }
 }
+
